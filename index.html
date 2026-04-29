@@ -1597,7 +1597,6 @@ function filtrar(area, btn) {
   target.setDate(target.getDate() + 2);
   target.setHours(23, 59, 59, 0);
   function update() {
-    const now = new Date();
     const diff = target - now;
     if (diff <= 0) {
       document.getElementById('countdown-wrap').innerHTML =
