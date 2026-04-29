@@ -1592,7 +1592,10 @@ function filtrar(area, btn) {
 
 // ── CONTADOR REGRESIVO ──
 (function countdown() {
-  const target = new Date('2026-05-30T23:59:59');
+  const now = new Date();
+  const target = new Date(now);
+  target.setDate(target.getDate() + 2);
+  target.setHours(23, 59, 59, 0);
   function update() {
     const now = new Date();
     const diff = target - now;
