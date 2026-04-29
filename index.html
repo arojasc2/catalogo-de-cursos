@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo de Cursos E-Learning | Norteduc</title>
+<meta name="description" content="Cursos e-learning asincrónicos listos para Moodle, bajo normativa SENCE. Oferta especial $120.000 c/u.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #2a9d8f;
+    --teal2: #1d7a6e;
+    --orange: #E07A30;
+    --orange2: #c4621a;
+    --dark: #061419;
+    --dark2: #0a1f26;
+    --text: #e8f4f6;
+    --muted: #7aaab0;
+    --card: #0d2a30;
+    --card2: #0b2228;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--dark); color: var(--text); line-height: 1.6; }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(6,20,25,0.96); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(42,157,143,0.3);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; }
+  .nav-logo span:first-child { color: var(--teal); }
+  .nav-logo span:last-child { color: var(--orange); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--orange); color: #fff; border: none; border-radius: 8px;
+    padding: .5rem 1.2rem; font-weight: 700; font-size: .9rem; cursor: pointer;
+    text-decoration: none; transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--orange2); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #061419 0%, #0a2530 60%, #061419 100%);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(42,157,143,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -80px; left: -80px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(224,122,48,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge-oferta {
+    display: inline-block; background: var(--orange); color: #fff;
+    font-size: .8rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: .4rem 1rem; border-radius: 6px; margin-bottom: 1.5rem;
+  }
+  .badges-row { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .badge-small {
+    display: inline-flex; align-items: center; gap: .4rem;
+    border: 1px solid; border-radius: 6px; padding: .3rem .9rem;
+    font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .badge-teal { color: var(--teal); border-color: var(--teal); background: rgba(42,157,143,0.1); }
+  .badge-orange { color: var(--orange); border-color: var(--orange); background: rgba(224,122,48,0.1); }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.15; margin-bottom: .75rem; }
+  .hero h1 span { color: var(--orange); }
+  .hero p { color: var(--muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto 2.5rem; }
+
+  /* ── PRECIO HERO ── */
+  .precio-hero {
+    display: inline-flex; align-items: center; gap: 2rem;
+    background: rgba(13,42,48,0.8); border: 1.5px solid var(--teal);
+    border-radius: 16px; padding: 1.25rem 2rem; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .precio-real-hero { text-align: center; }
+  .precio-real-hero .lbl { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .precio-real-hero .val { font-size: 1.4rem; color: #4a7a7a; text-decoration: line-through; }
+  .divider { width: 1px; height: 60px; background: rgba(255,255,255,0.1); }
+  .precio-oferta-hero { text-align: center; }
+  .precio-oferta-hero .lbl { font-size: .75rem; color: var(--orange); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+  .precio-oferta-hero .val { font-size: 2.8rem; font-weight: 900; color: #fff; line-height: 1; }
+  .precio-oferta-hero .sub { font-size: .82rem; color: var(--muted); }
+  .ahorro-pill {
+    background: var(--orange); color: #fff; border-radius: 12px;
+    padding: .75rem 1.25rem; text-align: center; font-weight: 800;
+  }
+  .ahorro-pill .num { font-size: 2rem; display: block; }
+  .deadline-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+  .deadline-item {
+    display: flex; align-items: center; gap: .6rem;
+    background: rgba(13,42,48,0.6); border: 1px solid rgba(224,122,48,0.3);
+    border-radius: 10px; padding: .6rem 1.2rem;
+  }
+  .deadline-item svg { width: 20px; height: 20px; stroke: var(--orange); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .deadline-item .di-label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .deadline-item .di-val { font-size: 1rem; font-weight: 700; color: var(--orange); }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--teal); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 1rem; padding: .9rem 2rem;
+    border-radius: 10px; transition: background .2s; margin: .5rem;
+  }
+  .hero-cta:hover { background: var(--teal2); }
+  .hero-cta.secondary { background: transparent; border: 2px solid var(--teal); color: var(--teal); }
+  .hero-cta.secondary:hover { background: rgba(42,157,143,0.1); }
+
+  /* ── BONUS ── */
+  .bonus-bar {
+    background: linear-gradient(90deg, rgba(28,13,4,0.95), rgba(40,18,5,0.95));
+    border-top: 1px solid rgba(224,122,48,0.4); border-bottom: 1px solid rgba(224,122,48,0.4);
+    padding: 1.25rem 2rem; text-align: center;
+  }
+  .bonus-bar p { font-size: .95rem; }
+  .bonus-bar strong { color: var(--orange); }
+
+  /* ── FILTROS ── */
+  .section { padding: 3.5rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .section-title { font-size: 1.7rem; font-weight: 800; margin-bottom: .5rem; }
+  .section-title span { color: var(--teal); }
+  .section-sub { color: var(--muted); margin-bottom: 2rem; }
+  .filter-wrap { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filter-btn {
+    background: var(--card); border: 1px solid rgba(42,157,143,0.25); color: var(--muted);
+    border-radius: 20px; padding: .4rem 1rem; font-size: .85rem; cursor: pointer;
+    transition: all .2s; font-family: inherit;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--teal); border-color: var(--teal); color: #fff;
+  }
+
+  /* ── CARDS GRID ── */
+  .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+  .course-card {
+    background: var(--card); border: 1px solid rgba(42,157,143,0.2);
+    border-radius: 16px; padding: 1.5rem; display: flex; flex-direction: column;
+    transition: border-color .2s, transform .2s;
+  }
+  .course-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+  .card-area {
+    display: inline-block; font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; padding: .25rem .75rem; border-radius: 4px; margin-bottom: .75rem;
+  }
+  .area-seguridad { background: rgba(224,122,48,0.15); color: var(--orange); }
+  .area-salud { background: rgba(42,157,143,0.15); color: var(--teal); }
+  .area-ofimatica { background: rgba(59,130,246,0.15); color: #60a5fa; }
+  .area-tecnologia { background: rgba(139,92,246,0.15); color: #a78bfa; }
+  .area-transversal { background: rgba(16,185,129,0.15); color: #34d399; }
+  .area-gestion { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .area-normativas { background: rgba(239,68,68,0.15); color: #f87171; }
+  .area-operativa { background: rgba(20,184,166,0.15); color: #2dd4bf; }
+  .card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; color: #fff; }
+  .card-competencia { font-size: .83rem; color: var(--muted); margin-bottom: 1rem; flex: 1; }
+  .card-horas {
+    display: flex; align-items: center; gap: .4rem;
+    font-size: .8rem; color: var(--teal); margin-bottom: 1rem; font-weight: 600;
+  }
+  .card-horas svg { width: 14px; height: 14px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; }
+  .modulos-list { margin-bottom: 1rem; }
+  .modulos-list summary {
+    font-size: .82rem; color: var(--teal); cursor: pointer; font-weight: 600;
+    padding: .4rem 0; list-style: none; display: flex; align-items: center; gap: .4rem;
+  }
+  .modulos-list summary::after { content: '▸'; font-size: .7rem; transition: transform .2s; }
+  .modulos-list[open] summary::after { transform: rotate(90deg); }
+  .modulos-list ul { padding: .5rem 0 0 .5rem; list-style: none; display: flex; flex-direction: column; gap: .3rem; }
+  .modulos-list ul li { font-size: .8rem; color: var(--muted); display: flex; gap: .5rem; }
+  .modulos-list ul li::before { content: '–'; color: var(--teal); flex-shrink: 0; }
+  .card-footer { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+  .card-precio { }
+  .card-precio .real { font-size: .8rem; color: #4a7a7a; text-decoration: line-through; }
+  .card-precio .oferta { font-size: 1.4rem; font-weight: 800; color: #fff; }
+  .card-precio .por { font-size: .72rem; color: var(--muted); }
+  .card-btn {
+    display: inline-flex; align-items: center; gap: .4rem;
+    background: var(--teal); color: #fff; text-decoration: none;
+    font-size: .82rem; font-weight: 700; padding: .55rem 1rem;
+    border-radius: 8px; transition: background .2s; white-space: nowrap;
+    border: none; cursor: pointer; font-family: inherit;
+  }
+  .card-btn:hover { background: var(--teal2); }
+  .card-btn svg { width: 14px; height: 14px; fill: #fff; flex-shrink: 0; }
+  .hidden { display: none !important; }
+
+  /* ── FEATURES ── */
+  .features-section { background: var(--dark2); padding: 3.5rem 2rem; }
+  .features-inner { max-width: 1200px; margin: 0 auto; }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+  .feature-card { background: var(--card); border-radius: 14px; padding: 1.25rem; border: 1px solid rgba(42,157,143,0.15); }
+  .feature-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(42,157,143,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: .75rem; }
+  .feature-icon svg { width: 22px; height: 22px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .feature-card h3 { font-size: .95rem; font-weight: 700; margin-bottom: .3rem; }
+  .feature-card p { font-size: .82rem; color: var(--muted); }
+
+  /* ── FAQ ── */
+  .faq-section { padding: 3.5rem 2rem; max-width: 800px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .faq-item summary {
+    padding: 1.1rem 0; cursor: pointer; font-weight: 600; font-size: .95rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    list-style: none; color: #fff;
+  }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: var(--teal); flex-shrink: 0; transition: transform .2s; }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p, .faq-item ol, .faq-item ul { font-size: .88rem; color: var(--muted); padding-bottom: 1rem; line-height: 1.7; }
+  .faq-item ol, .faq-item ul { padding-left: 1.5rem; }
+  .faq-item li { margin-bottom: .3rem; }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    background: linear-gradient(135deg, #0a2530, #061419);
+    border-top: 1px solid rgba(42,157,143,0.2);
+    padding: 4rem 2rem; text-align: center;
+  }
+  .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: .75rem; }
+  .cta-section h2 span { color: var(--orange); }
+  .cta-section p { color: var(--muted); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .cta-deadline {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(224,122,48,0.15); border: 1px solid rgba(224,122,48,0.4);
+    border-radius: 8px; padding: .5rem 1rem; font-size: .85rem; color: var(--orange);
+    font-weight: 700; margin-bottom: 1.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #040e11; border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem; text-align: center; color: var(--muted); font-size: .82rem;
+  }
+  footer strong { color: var(--teal); }
+  footer a { color: var(--orange); text-decoration: none; }
+
+  /* ── WA FLOAT ── */
+  .wa-float {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+    width: 58px; height: 58px; background: #25d366; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none;
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .precio-hero { gap: 1rem; }
+    .divider { display: none; }
+  }
+
+  /* ── ANIMACIONES SCROLL ── */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── PARTÍCULAS HERO ── */
+  .hero-particle {
+    position: absolute; border-radius: 50%;
+    background: rgba(42,157,143,0.22);
+    pointer-events: none; animation: floatParticle linear infinite;
+  }
+  @keyframes floatParticle {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.8; }
+    100% { transform: translateY(-110vh) translateX(30px); opacity: 0; }
+  }
+
+  /* ── TÍTULO GRADIENTE ANIMADO ── */
+  .hero h1 span {
+    background: linear-gradient(90deg, #E07A30, #f5a060, #E07A30);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s linear infinite;
+  }
+  @keyframes gradientShift {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* ── CONTADOR REGRESIVO ── */
+  .countdown-wrap {
+    display: flex; gap: .75rem; justify-content: center;
+    margin-bottom: 1.75rem; flex-wrap: wrap;
+  }
+  .cd-block {
+    background: rgba(13,42,48,0.9); border: 1.5px solid rgba(42,157,143,0.4);
+    border-radius: 12px; padding: .75rem 1rem; min-width: 72px; text-align: center;
+  }
+  .cd-num {
+    font-size: 2rem; font-weight: 900; color: #fff; line-height: 1;
+    display: block; font-variant-numeric: tabular-nums;
+  }
+  .cd-lbl { font-size: .62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .cd-expired { color: var(--orange); font-weight: 800; font-size: 1.1rem; }
+
+  /* ── PASOS ── */
+  .pasos-section {
+    background: var(--dark2);
+    border-top: 1px solid rgba(42,157,143,0.15);
+    border-bottom: 1px solid rgba(42,157,143,0.15);
+    padding: 3.5rem 2rem;
+  }
+  .pasos-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .pasos-inner h2 { font-size: 1.7rem; font-weight: 800; margin-bottom: .4rem; }
+  .pasos-inner h2 span { color: var(--teal); }
+  .pasos-sub { color: var(--muted); margin-bottom: 2.5rem; }
+  .pasos-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; position: relative;
+  }
+  .pasos-grid::before {
+    content: ''; position: absolute; top: 36px; left: 16.6%; right: 16.6%;
+    height: 2px; background: linear-gradient(90deg, var(--teal), var(--orange));
+    opacity: 0.3; pointer-events: none;
+  }
+  .paso-item { position: relative; }
+  .paso-num {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal), var(--teal2));
+    color: #fff; font-weight: 900; font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto .75rem; box-shadow: 0 0 0 6px rgba(42,157,143,0.15);
+    position: relative; z-index: 1;
+  }
+  .paso-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: .35rem; }
+  .paso-item p { font-size: .83rem; color: var(--muted); }
+
+  /* ── MERCADO PAGO BOTONES ── */
+  .card-btn-mp {
+    background: #009ee3 !important;
+    flex: 1;
+  }
+  .card-btn-mp:hover { background: #0070b9 !important; }
+  .card-btn-wa {
+    background: #25d366 !important;
+    flex: 0 0 auto;
+    padding: .55rem .75rem !important;
+  }
+  .card-btn-wa:hover { background: #1da851 !important; }
+  .card-btns { display: flex; gap: .5rem; width: 100%; }
+  .cuotas-badge {
+    font-size: .7rem; color: #009ee3; font-weight: 700;
+    margin-bottom: .4rem; display: flex; align-items: center; gap: .3rem;
+  }
+
+  /* ── MODAL PAGO ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.75); align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #0d2a30; border: 1.5px solid var(--teal);
+    border-radius: 20px; padding: 2rem; max-width: 480px; width: 90%;
+    position: relative; animation: modalIn .3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(-20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font-size: 1.4rem; line-height: 1; padding: .2rem .5rem;
+    border-radius: 6px; transition: color .2s;
+  }
+  .modal-close:hover { color: #fff; }
+  .modal-box h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1.2rem; color: #fff; }
+  .modal-step {
+    display: flex; gap: .75rem; margin-bottom: .9rem; align-items: flex-start;
+  }
+  .modal-step-num {
+    width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+    background: var(--teal); color: #fff; font-weight: 700; font-size: .8rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-step p { font-size: .87rem; color: var(--muted); line-height: 1.5; }
+  .modal-step p strong { color: #fff; }
+  .modal-step p a { color: var(--orange); }
+  .modal-mp-badge {
+    display: flex; align-items: center; gap: .6rem; justify-content: center;
+    background: rgba(0,158,227,0.1); border: 1px solid rgba(0,158,227,0.3);
+    border-radius: 10px; padding: .75rem 1rem; margin: 1.25rem 0;
+  }
+  .modal-mp-badge .mp-lock { font-size: 1.3rem; }
+  .modal-mp-badge span { font-size: .9rem; font-weight: 700; color: #009ee3; }
+  .modal-cta {
+    display: block; width: 100%; text-align: center;
+    background: #009ee3; color: #fff; border: none; border-radius: 10px;
+    padding: .85rem; font-weight: 700; font-size: .95rem; text-decoration: none;
+    cursor: pointer; transition: background .2s; margin-top: .5rem;
+  }
+  .modal-cta:hover { background: #0070b9; }
+
+  /* ── SECCIÓN PAGO INFO ── */
+  .pago-info-section {
+    background: rgba(0,158,227,0.05);
+    border-top: 1px solid rgba(0,158,227,0.2);
+    border-bottom: 1px solid rgba(0,158,227,0.2);
+    padding: 2rem;
+    text-align: center;
+  }
+  .pago-info-inner { max-width: 700px; margin: 0 auto; }
+  .pago-info-inner h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .5rem; color: #fff; }
+  .pago-pasos {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;
+  }
+  .pago-paso {
+    display: flex; align-items: center; gap: .5rem; font-size: .83rem; color: var(--muted);
+  }
+  .pago-paso .arrow { color: var(--teal); font-size: 1.1rem; }
+  .pago-lock { font-size: 2rem; margin-bottom: .5rem; display: block; }
+
+  /* ── NAV PAGO BTN ── */
+  .nav-pay {
+    background: #009ee3; color: #fff; border: none; border-radius: 8px;
+    padding: .5rem 1.1rem; font-weight: 700; font-size: .85rem; cursor: pointer;
+    text-decoration: none; transition: background .2s; margin-right: .5rem;
+  }
+  .nav-pay:hover { background: #0070b9; }
+  @media (max-width: 640px) { .nav-pay { display: none; } .pasos-grid::before { display: none; } }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>Norte</span><span>duc®</span></a>
+  <ul class="nav-links">
+    <li><a href="#cursos">Cursos</a></li>
+    <li><a href="#incluye">¿Qué incluye?</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="nav-pay" onclick="document.getElementById('modal-pago').classList.add('open')">💳 Cómo pagar</button>
+  <a class="nav-cta" href="https://wa.me/56978456475?text=Hola,%20me%20interesa%20conocer%20los%20cursos%20e-learning" target="_blank">Contactar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge-oferta">⚡ Oferta por tiempo limitado</div>
+  <div class="badges-row">
+    <span class="badge-small badge-teal">✓ Normativa SENCE</span>
+    <span class="badge-small badge-teal">✓ Listo para Moodle</span>
+    <span class="badge-small badge-orange">✓ Modalidad asincrónica</span>
+    <span class="badge-small badge-orange">✓ Implementación incluida</span>
+  </div>
+  <h1>Cursos E-Learning<br><span>Asincrónicos</span> al mejor precio</h1>
+  <p>Contenidos 100% online, diseñados bajo normativa SENCE y listos para cargar en tu plataforma Moodle.</p>
+
+  <div class="precio-hero">
+    <div class="precio-real-hero">
+      <div class="lbl">Valor real</div>
+      <div class="val">$350.000</div>
+    </div>
+    <div class="divider"></div>
+    <div class="precio-oferta-hero">
+      <div class="lbl">Precio oferta</div>
+      <div class="val">$120.000</div>
+      <div class="sub">por curso · IVA incluido</div>
+    </div>
+    <div class="ahorro-pill">
+      <span class="num">66%</span>
+      de ahorro
+    </div>
+  </div>
+
+  <div class="deadline-row">
+    <div class="deadline-item">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <div>
+        <div class="di-label">Oferta válida hasta</div>
+        <div class="di-val">Jueves 30 de Mayo</div>
+      </div>
+    </div>
+    <div class="deadline-item">
+      <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+      <div>
+        <div class="di-label">Facilidades de pago</div>
+        <div class="di-val">Cuotas con tarjetas bancarias</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- CONTADOR REGRESIVO -->
+  <div class="countdown-wrap" id="countdown-wrap">
+    <div class="cd-block"><span class="cd-num" id="cd-dias">--</span><span class="cd-lbl">Días</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-hrs">--</span><span class="cd-lbl">Horas</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-min">--</span><span class="cd-lbl">Min</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-seg">--</span><span class="cd-lbl">Seg</span></div>
+  </div>
+
+  <a class="hero-cta" href="#cursos">Ver catálogo completo</a>
+  <a class="hero-cta secondary" href="https://wa.me/56978456475?text=Hola,%20quiero%20solicitar%20una%20demo%20de%20un%20curso" target="_blank">Solicitar demo gratuita</a>
+</section>
+
+<!-- BONUS BAR -->
+<div class="bonus-bar">
+  <p>🎁 <strong>Bonus exclusivo:</strong> Al comprar <strong>3 o más cursos</strong> recibes de regalo: implementación de <strong>certificado automatizado en Moodle</strong> o integración de <strong>asistencia SENCE en Moodle</strong> — valorado en $150.000</p>
+</div>
+
+
+<!-- 3 PASOS -->
+<section class="pasos-section">
+  <div class="pasos-inner">
+    <h2>¿Cómo <span>funciona</span>?</h2>
+    <p class="pasos-sub">Proceso simple, rápido y 100% seguro</p>
+    <div class="pasos-grid">
+      <div class="paso-item fade-in-up">
+        <div class="paso-num">1</div>
+        <h3>Elige tus cursos</h3>
+        <p>Selecciona uno o más cursos del catálogo según las necesidades de tu empresa</p>
+      </div>
+      <div class="paso-item fade-in-up" style="transition-delay:.15s">
+        <div class="paso-num">2</div>
+        <h3>Paga en línea</h3>
+        <p>Paga seguro con Mercado Pago en cuotas con tarjetas bancarias y envía el comprobante a contacto@norteduc.cl</p>
+      </div>
+      <div class="paso-item fade-in-up" style="transition-delay:.3s">
+        <div class="paso-num">3</div>
+        <h3>Recibe tu curso</h3>
+        <p>En 1–2 días hábiles implementamos el curso directamente en tu plataforma Moodle</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOS -->
+<section class="section" id="cursos">
+  <h2 class="section-title">Catálogo de <span>Cursos</span></h2>
+  <p class="section-sub">Filtra por área temática para encontrar el curso que necesitas</p>
+
+  <div class="filter-wrap">
+    <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
+    <button class="filter-btn" onclick="filtrar('seguridad', this)">Prevención y Seguridad</button>
+    <button class="filter-btn" onclick="filtrar('salud', this)">Salud</button>
+    <button class="filter-btn" onclick="filtrar('ofimatica', this)">Ofimática</button>
+    <button class="filter-btn" onclick="filtrar('tecnologia', this)">Tecnología</button>
+    <button class="filter-btn" onclick="filtrar('transversal', this)">Transversal</button>
+    <button class="filter-btn" onclick="filtrar('gestion', this)">Gestión</button>
+    <button class="filter-btn" onclick="filtrar('normativas', this)">Normativas</button>
+    <button class="filter-btn" onclick="filtrar('operativa', this)">Operativa</button>
+  </div>
+
+  <div class="courses-grid" id="grid">
+
+    <!-- 1. SAP -->
+    <div class="course-card fade-in-up" data-area="gestion">
+      <span class="card-area area-gestion">Gestión</span>
+      <div class="card-title">Herramientas básicas de SAP</div>
+      <div class="card-competencia">Aplicar herramientas de SAP integral de acuerdo a datos procesados por la empresa en módulos financiero, logístico, de calidad y/o producción.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 16 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Introducción a SAP ERP</li>
+          <li>Adquisiciones (MM): compras, pedidos y facturas</li>
+          <li>Ventas (SD): pedidos, despacho y facturación</li>
+          <li>Finanzas (FI): registro contable y revisión de facturas</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Excel Básico -->
+    <div class="course-card fade-in-up" data-area="ofimatica">
+      <span class="card-area area-ofimatica">Ofimática</span>
+      <div class="card-title">Excel 365 nivel básico</div>
+      <div class="card-competencia">Analizar las funcionalidades y usos a nivel básico de Excel 365 según las especificaciones técnicas del programa.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 24 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Interfaz, entorno y gestión de archivos</li>
+          <li>Funciones lógicas, estadísticas, fecha y hora</li>
+          <li>Gráficos, subtotales, ordenamiento y filtros</li>
+          <li>Configuración e impresión</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Excel Intermedio -->
+    <div class="course-card fade-in-up" data-area="ofimatica">
+      <span class="card-area area-ofimatica">Ofimática</span>
+      <div class="card-title">Excel 365 nivel intermedio</div>
+      <div class="card-competencia">Analizar las funcionalidades intermedias de Microsoft Excel 365 conforme a las especificaciones técnicas del programa.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 24 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Protección de libros, hojas y ventanas</li>
+          <li>Funciones de texto, fecha, hora y condicionales</li>
+          <li>Funciones de búsqueda y referencia (BUSCARV, BUSCARH)</li>
+          <li>Tablas dinámicas</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Excel Avanzado -->
+    <div class="course-card fade-in-up" data-area="ofimatica">
+      <span class="card-area area-ofimatica">Ofimática</span>
+      <div class="card-title">Excel 365 nivel avanzado</div>
+      <div class="card-competencia">Analizar las funcionalidades de nivel avanzado de Excel 365 incluyendo Solver, macros y Power Query.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 24 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Solver, escenarios, validación y formatos condicionales</li>
+          <li>Funciones de base de datos y Power Query</li>
+          <li>Macros y Visual Basic para automatización</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Power BI -->
+    <div class="course-card fade-in-up" data-area="ofimatica">
+      <span class="card-area area-ofimatica">Ofimática</span>
+      <div class="card-title">Power BI nivel básico-intermedio</div>
+      <div class="card-competencia">Crear reportes interactivos y visualizaciones de datos con Power BI Desktop para la toma de decisiones empresariales.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 25 hrs.</div>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Rigger -->
+    <div class="course-card fade-in-up" data-area="operativa">
+      <span class="card-area area-operativa">Operativa</span>
+      <div class="card-title">Técnicas de izaje y Rigger</div>
+      <div class="card-competencia">Aplicar técnicas de operación de maniobras de izaje según la reglamentación vigente para operadores de grúa, rigger y señaleros.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 12 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Fundamentos y seguridad en operaciones de izaje</li>
+          <li>Implementos y accesorios (cadenas, eslingas)</li>
+          <li>Señales manuales internacionales (20 señales)</li>
+          <li>Cálculos básicos en procedimientos de izaje</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Trabajo en Altura -->
+    <div class="course-card fade-in-up" data-area="seguridad">
+      <span class="card-area area-seguridad">Prevención y Seguridad</span>
+      <div class="card-title">Trabajo en altura física</div>
+      <div class="card-competencia">Aplicar técnicas de trabajo seguro en altura física de acuerdo a normativa vigente para operarios que realizan labores sobre 1,8 metros.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 12 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Fundamentos del trabajo en altura</li>
+          <li>Medidas de seguridad y sistemas SPDC</li>
+          <li>Trabajo seguro en andamios, postes y torres</li>
+          <li>Emergencias y primeros auxilios en altura</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. LOTO -->
+    <div class="course-card fade-in-up" data-area="seguridad">
+      <span class="card-area area-seguridad">Prevención y Seguridad</span>
+      <div class="card-title">Aislamiento y bloqueo de energías peligrosas (LOTO)</div>
+      <div class="card-competencia">Aplicar protocolos del sistema de bloqueo y etiquetado en el control de energías peligrosas de acuerdo a la normativa vigente (OSHA 1910.147).</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 12 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Fundamentos LOTO y marco normativo (DS 594, DS 132)</li>
+          <li>Identificación de energías y puntos de aislamiento</li>
+          <li>Procedimiento estándar LOTO y documentación</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Sustancias Peligrosas -->
+    <div class="course-card fade-in-up" data-area="seguridad">
+      <span class="card-area area-seguridad">Prevención y Seguridad</span>
+      <div class="card-title">Manejo de sustancias peligrosas</div>
+      <div class="card-competencia">Aplicar procedimientos seguros en el manejo y almacenamiento de sustancias peligrosas, según protocolos de seguridad y normativa legal vigente (NCh 382).</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 14 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Definición y clasificación de sustancias peligrosas</li>
+          <li>Identificación de riesgos (número ONU, CIR, NCh 1411)</li>
+          <li>Identificación por colores y etiquetado</li>
+          <li>Hojas de datos de seguridad (HDS y HDST)</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Andamios -->
+    <div class="course-card fade-in-up" data-area="seguridad">
+      <span class="card-area area-seguridad">Prevención y Seguridad</span>
+      <div class="card-title">Seguridad y montaje de andamios</div>
+      <div class="card-competencia">Reconocer los procedimientos de arme y desarme de andamios de acuerdo a procedimientos de seguridad y normativa chilena vigente.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 16 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Tipos, partes y normativa de andamios</li>
+          <li>Recomendaciones de seguridad y EPP en altura</li>
+          <li>Procedimientos de montaje y desmontaje</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. Espacios Confinados -->
+    <div class="course-card fade-in-up" data-area="seguridad">
+      <span class="card-area area-seguridad">Prevención y Seguridad</span>
+      <div class="card-title">Trabajo en espacios confinados</div>
+      <div class="card-competencia">Analizar protocolos de seguridad para trabajar en espacios confinados de acuerdo a la normativa vigente.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 16 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Riesgos, peligros y marco legal</li>
+          <li>Planificación, EPP y medidas preventivas</li>
+          <li>Procedimientos de trabajo seguro y planes de emergencia</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12. Extintores -->
+    <div class="course-card fade-in-up" data-area="seguridad">
+      <span class="card-area area-seguridad">Prevención y Seguridad</span>
+      <div class="card-title">Uso de extintores portátiles (NFPA 10)</div>
+      <div class="card-competencia">Analizar los procedimientos de uso de extintores portátiles de acuerdo con la norma NFPA 10.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 16 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Alcances técnicos y normativos NFPA 10</li>
+          <li>Clasificación de extintores según tipo de fuego</li>
+          <li>Inspección, mantenimiento y pruebas hidrostáticas</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. Conducción Defensiva -->
+    <div class="course-card fade-in-up" data-area="seguridad">
+      <span class="card-area area-seguridad">Prevención y Seguridad</span>
+      <div class="card-title">Protocolos de conducción a la defensiva</div>
+      <div class="card-competencia">Aplicar protocolos de conducción a la defensiva de acuerdo a la Ley de Tránsito, normativa vigente y reglamento interno de la empresa.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 48 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>El manejo defensivo y sus fundamentos</li>
+          <li>Características del conductor defensivo</li>
+          <li>Condiciones adversas: clima, visibilidad y tránsito</li>
+          <li>Estrategias de manejo defensivo</li>
+          <li>Psicoprevención en la conducción</li>
+          <li>Conducción eficiente</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14. RCP/DEA -->
+    <div class="course-card fade-in-up" data-area="salud">
+      <span class="card-area area-salud">Salud</span>
+      <div class="card-title">Soporte vital básico y uso del DEA</div>
+      <div class="card-competencia">Desarrollar habilidades para identificar un paro cardiorrespiratorio y dar tratamiento eficaz mediante algoritmos de acción validados internacionalmente.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 16 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Introducción al soporte vital básico y marco normativo</li>
+          <li>Técnicas de RCP y uso del DEA (adultos, embarazadas, niños)</li>
+          <li>Obstrucción de la vía aérea (OVACE) en adultos y pediátricos</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. Primeros Auxilios -->
+    <div class="course-card fade-in-up" data-area="salud">
+      <span class="card-area area-salud">Salud</span>
+      <div class="card-title">Primeros auxilios básicos</div>
+      <div class="card-competencia">Aplicar técnicas básicas en primeros auxilios, identificando los procedimientos de primera respuesta para actuar correctamente frente a una emergencia.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 8 a 12 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Fundamentos y preparación ante emergencias</li>
+          <li>Lesiones traumáticas (heridas, fracturas, quemaduras)</li>
+          <li>Urgencias médicas e intoxicaciones</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 16. IAAS 21 hrs -->
+    <div class="course-card fade-in-up" data-area="salud">
+      <span class="card-area area-salud">Salud</span>
+      <div class="card-title">IAAS 21 horas — Prevención de infecciones en salud</div>
+      <div class="card-competencia">Aplicar medidas preventivas de infecciones asociadas a la atención de salud (IAAS) de acuerdo con protocolos establecidos para personal de salud.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 21 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Epidemiología y brotes epidémicos</li>
+          <li>Norma 225 y Programa de Control de IAAS (PCI)</li>
+          <li>Confidencialidad en el registro de datos de pacientes</li>
+          <li>Higiene de manos (estrategia multimodal OMS)</li>
+          <li>Precaución por vías de transmisión</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 17. IAAS 40 hrs -->
+    <div class="course-card fade-in-up" data-area="salud">
+      <span class="card-area area-salud">Salud</span>
+      <div class="card-title">IAAS 40 horas — Prevención de infecciones en salud</div>
+      <div class="card-competencia">Analizar técnicas de prevención y control de infecciones asociadas a la atención en salud, respetando las exigencias de acreditación de prestadores institucionales.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 40 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Epidemiología y brotes epidémicos</li>
+          <li>Norma 225 y PCI</li>
+          <li>Confidencialidad en registro de pacientes</li>
+          <li>Higiene de manos</li>
+          <li>Precaución por vías de transmisión</li>
+          <li>Desinfección y esterilización</li>
+          <li>REAS A y B</li>
+          <li>Microbiología y resistencia antimicrobiana</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 18. IA Educación -->
+    <div class="course-card fade-in-up" data-area="tecnologia">
+      <span class="card-area area-tecnologia">Tecnología</span>
+      <div class="card-title">Herramientas de IA para la gestión educativa</div>
+      <div class="card-competencia">Emplear eficientemente las herramientas de Inteligencia Artificial para gestionar los procesos educativos y trabajo colaborativo en instituciones.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 24 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>IA generativa: ChatGPT, Copilot, POE y extensiones</li>
+          <li>Creación de contenidos: imágenes, audio, video y presentaciones</li>
+          <li>Trabajo colaborativo: ClickUp, Trello, Miro, Canva AI</li>
+          <li>Revisión bibliográfica inteligente: Elicit, NotebookLM</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 19. Comunicación Liderazgo -->
+    <div class="course-card fade-in-up" data-area="transversal">
+      <span class="card-area area-transversal">Transversal</span>
+      <div class="card-title">Comunicación efectiva para el liderazgo</div>
+      <div class="card-competencia">Aplicar técnicas y modelos para la comunicación efectiva en el ámbito laboral, social y personal. Dirigido a jefaturas y cargos gerenciales.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 20 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Niveles de la comunicación humana</li>
+          <li>Comunicación asertiva y técnica DEEC</li>
+          <li>Escucha empática</li>
+          <li>Retroalimentación del desempeño (modelo GROW)</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 20. Ley Karin -->
+    <div class="course-card fade-in-up" data-area="normativas">
+      <span class="card-area area-normativas">Normativas</span>
+      <div class="card-title">Prevención del acoso laboral y sexual (Ley Karin)</div>
+      <div class="card-competencia">Aplicar herramientas de prevención de violencia en el contexto laboral, de acuerdo con el convenio 190 de la OIT y la Ley 21.643 (Ley Karin).</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 12 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Conceptos de acoso laboral, sexual y violencia en el trabajo</li>
+          <li>Marco legal: Convenio 190 OIT y Ley 21.643</li>
+          <li>Prevención, protocolo de denuncia e investigación</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 21. Inclusión Laboral -->
+    <div class="course-card fade-in-up" data-area="transversal">
+      <span class="card-area area-transversal">Transversal</span>
+      <div class="card-title">Gestor de inclusión laboral</div>
+      <div class="card-competencia">Gestionar los procesos de inclusión laboral de personas con discapacidad para implementar un plan de inclusión al interior de la empresa (Ley 21.015).</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 12 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Nociones generales: discapacidad e inclusión laboral</li>
+          <li>Marco normativo: Ley 21.015 y normativa internacional</li>
+          <li>Buenas prácticas de las empresas</li>
+          <li>Comunicación cultural y organizacional inclusiva</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 22. Servicio al Cliente -->
+    <div class="course-card fade-in-up" data-area="transversal">
+      <span class="card-area area-transversal">Transversal</span>
+      <div class="card-title">Técnicas de atención y servicio al cliente</div>
+      <div class="card-competencia">Aplicar técnicas de atención y servicio al cliente de acuerdo a protocolos establecidos, orientado a ejecutivos comerciales y encargados de atención.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 60 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Conceptos generales y perfil del profesional de atención</li>
+          <li>Atención en el proceso de ventas y fidelización</li>
+          <li>Comunicación efectiva y resolución de conflictos</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 23. DS44 -->
+    <div class="course-card fade-in-up" data-area="normativas">
+      <span class="card-area area-normativas">Normativas</span>
+      <div class="card-title">Gestión preventiva de riesgos laborales (DS44)</div>
+      <div class="card-competencia">Aplicar la normativa del Decreto Supremo N°44 en la gestión preventiva de riesgos laborales según los estándares de seguridad y salud en el trabajo.</div>
+      <div class="card-horas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> Horas e-learning mínimas recomendadas: 16 hrs.</div>
+      <details class="modulos-list">
+        <summary>Ver módulos</summary>
+        <ul>
+          <li>Principios y alcances del DS44 (relación con Ley 16.744)</li>
+          <li>Identificación y evaluación de riesgos laborales</li>
+          <li>Medidas preventivas y planes de emergencia</li>
+        </ul>
+      </details>
+      <div class="card-footer">
+        <div class="card-precio">
+          <div class="real">$350.000</div>
+          <div class="oferta">$120.000</div>
+          <div class="por">por curso · IVA inc.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end;">
+          <div class="cuotas-badge">💳 Cuotas disponibles</div>
+          <div class="card-btns">
+            <a class="card-btn card-btn-mp" href="https://link.mercadopago.cl/norteduc" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff;flex-shrink:0"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+              Pagar ahora
+            </a>
+            <a class="card-btn card-btn-wa" href="https://wa.me/56978456475" target="_blank" title="Consultar">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:#fff"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+</section>
+
+
+<!-- INFO PAGO -->
+<section class="pago-info-section">
+  <div class="pago-info-inner">
+    <span class="pago-lock">🔒</span>
+    <h3>Paga seguro con Mercado Pago</h3>
+    <p style="color:var(--muted);font-size:.9rem;margin-top:.3rem;">Cuotas disponibles con tarjetas bancarias · Sin costos ocultos</p>
+    <div class="pago-pasos">
+      <div class="pago-paso">
+        <strong style="color:#fff;">1. Haz clic en "Pagar ahora"</strong>
+      </div>
+      <span class="arrow">→</span>
+      <div class="pago-paso">
+        <strong style="color:#fff;">2. Completa el pago</strong>
+      </div>
+      <span class="arrow">→</span>
+      <div class="pago-paso">
+        <strong style="color:#fff;">3. Envía el comprobante</strong>
+      </div>
+      <span class="arrow">→</span>
+      <div class="pago-paso">
+        <strong style="color:#fff;">4. Recibe tu curso en 1-2 días</strong>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:.82rem;margin-top:1rem;">
+      Envía el comprobante a <a href="mailto:contacto@norteduc.cl" style="color:var(--orange);">contacto@norteduc.cl</a>
+      indicando: <strong style="color:#fff;">nombre de empresa, RUT empresa y cursos comprados</strong>
+    </p>
+  </div>
+</section>
+
+<!-- QUÉ INCLUYE -->
+<section class="features-section" id="incluye">
+  <div class="features-inner">
+    <h2 class="section-title" style="text-align:center;">¿Qué <span>incluye</span> cada curso?</h2>
+    <p class="section-sub" style="text-align:center;">Todo lo que necesitas para capacitar con calidad y cumplir la normativa</p>
+    <div class="features-grid">
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3>Diseño instruccional SENCE</h3>
+        <p>Contenidos diseñados bajo normativa SCORM y SENCE, con aprendizajes esperados, evaluaciones y competencias definidas.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Listo para cargar en Moodle</h3>
+        <p>Paquetes SCORM listos para importar directamente en tu plataforma Moodle sin configuración adicional.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg></div>
+        <h3>Evaluaciones con retroalimentación</h3>
+        <p>Evaluaciones por módulo y evaluación final con retroalimentación automática. Nota mínima de aprobación: 60 puntos.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h3>Diseño instruccional incluido</h3>
+        <p>Recibes el documento de diseño instruccional completo para tramitar el código SENCE en Solicurso.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <h3>Implementación en 1-2 días hábiles</h3>
+        <p>Cargamos el curso directamente en tu Moodle en 1 a 2 días hábiles desde que recibes las credenciales de acceso.</p>
+      </div>
+      <div class="feature-card fade-in-up">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>Soporte técnico de contenidos</h3>
+        <p>Soporte para incidencias relacionadas con los contenidos del curso, disponible vía WhatsApp.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-section">
+    <h2 class="section-title" style="margin-bottom:.5rem;">Preguntas <span>frecuentes</span></h2>
+    <p class="section-sub">Todo lo que necesitas saber antes de comprar</p>
+
+    <details class="faq-item">
+      <summary>¿Incluye la carga del curso en mi plataforma Moodle?</summary>
+      <p>Sí. El valor incluye la carga e implementación del curso directamente en tu plataforma Moodle.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Hay algún costo adicional después de la compra?</summary>
+      <p>No. Una vez adquirido, el curso es tuyo para siempre. Sin pagos recurrentes ni licencias adicionales.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Incluye la solicitud de código SENCE?</summary>
+      <p>No. La solicitud de codificación debe ser realizada por el cliente a través de Solicurso. Sin embargo, entregamos el diseño instruccional completo con toda la información necesaria para completar el proceso.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Ofrecen soporte técnico?</summary>
+      <p>Sí, ofrecemos soporte para incidencias relacionadas directamente con los contenidos del curso. No nos hacemos responsables por problemas derivados del servidor, configuración o plataforma del cliente.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué necesito para que carguen mis cursos?</summary>
+      <ol>
+        <li>Crear la plantilla del curso en tu plataforma Moodle.</li>
+        <li>Crear un usuario con rol "Creador de curso" o "Administrador".</li>
+        <li>Matricularlo en el curso correspondiente.</li>
+        <li>Compartir las credenciales de acceso por WhatsApp al +56978456475, indicando nombre de la empresa y dominio de tu Moodle.</li>
+      </ol>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Puedo ver una demo del curso antes de comprar?</summary>
+      <p>Sí. Puedes solicitar acceso a una demo escribiéndonos al +56978456475. Te habilitamos un usuario de prueba para que revises los contenidos antes de decidir.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Los cursos están actualizados con la normativa vigente?</summary>
+      <p>Sí. Nuestros cursos se desarrollan y actualizan conforme a la normativa SENCE vigente y estándares SCORM, garantizando contenidos pertinentes y válidos para procesos de capacitación formal.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿En cuánto tiempo estará listo el curso en mi plataforma?</summary>
+      <p>El plazo de implementación es de 1 a 2 días hábiles desde que se reciben las credenciales de acceso a tu Moodle, pudiendo variar según la cantidad de cursos adquiridos.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Puedo comprar solo un curso o debo adquirir un paquete?</summary>
+      <p>Puedes comprar desde un solo curso. Además, al adquirir 3 o más cursos obtienes beneficios adicionales sin costo extra.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Los cursos tienen evaluaciones?</summary>
+      <p>Sí. Todos los cursos incluyen evaluaciones integradas con registro automático de notas en Moodle, cumpliendo los requisitos mínimos exigidos por SENCE.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué pasa si el contenido del curso no se adapta a las necesidades de mi empresa?</summary>
+      <p>Contamos con servicio de personalización de contenidos. Contáctanos para cotizar ajustes específicos según el rubro o contexto de tu organización.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <h2>¿Listo para capacitar<br>con <span>calidad y ahorro</span>?</h2>
+  <p>Escríbenos hoy y te asesoramos sin compromiso para elegir los cursos que mejor se adapten a tu empresa.</p>
+  <div style="margin-bottom:1.5rem;">
+    <span class="cta-deadline">Oferta válida solo hasta el Jueves 30 de Mayo</span>
+  </div>
+  <div>
+    <a class="hero-cta" href="https://wa.me/56978456475?text=Hola,%20quiero%20conocer%20los%20cursos%20e-learning%20de%20Norteduc" target="_blank">Contactar por WhatsApp</a>
+    <a class="hero-cta secondary" href="#cursos">Ver catálogo</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="margin-bottom:.5rem;"><strong>Norteduc®</strong> — Tecnología Educativa</p>
+  <p>contacto@norteduc.cl &nbsp;|&nbsp; <a href="https://wa.me/56978456475" target="_blank">+569 7845 6475</a></p>
+  <p style="margin-top:.5rem; font-size:.75rem; opacity:.6;">Cursos e-learning asincrónicos · Normativa SENCE · Implementación en Moodle</p>
+</footer>
+
+
+<!-- MODAL PAGO -->
+<div class="modal-overlay" id="modal-pago" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="document.getElementById('modal-pago').classList.remove('open')">✕</button>
+    <h3>💳 Instrucciones de pago</h3>
+    <div class="modal-mp-badge">
+      <span class="mp-lock">🔒</span>
+      <span>Pago 100% seguro con Mercado Pago</span>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">1</div>
+      <p>Haz clic en el botón <strong>"Pagar ahora"</strong> del curso que te interesa</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">2</div>
+      <p>Completa el pago en <strong>cuotas con tu tarjeta bancaria</strong> a través de Mercado Pago</p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">3</div>
+      <p>Envía el comprobante de pago a <a href="mailto:contacto@norteduc.cl"><strong>contacto@norteduc.cl</strong></a> indicando: <strong>nombre de empresa, RUT empresa y cursos comprados</strong></p>
+    </div>
+    <div class="modal-step">
+      <div class="modal-step-num">4</div>
+      <p>En <strong>1–2 días hábiles</strong> implementamos el curso directamente en tu plataforma Moodle</p>
+    </div>
+    <a class="modal-cta" href="https://link.mercadopago.cl/norteduc" target="_blank">Ir a Mercado Pago →</a>
+  </div>
+</div>
+
+<!-- WA FLOTANTE -->
+<a class="wa-float" href="https://wa.me/56978456475?text=Hola,%20me%20interesa%20información%20sobre%20los%20cursos%20e-learning" target="_blank" title="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+
+<script>
+// ── FILTROS ──
+function filtrar(area, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.course-card').forEach(card => {
+    card.classList.toggle('hidden', area !== 'todos' && card.dataset.area !== area);
+  });
+}
+
+// ── CONTADOR REGRESIVO ──
+(function countdown() {
+  const target = new Date('2026-05-30T23:59:59');
+  function update() {
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.getElementById('countdown-wrap').innerHTML =
+        '<p class="cd-expired">⏰ ¡Oferta finalizada!</p>';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const pad = n => String(n).padStart(2, '0');
+    document.getElementById('cd-dias').textContent = pad(d);
+    document.getElementById('cd-hrs').textContent  = pad(h);
+    document.getElementById('cd-min').textContent  = pad(m);
+    document.getElementById('cd-seg').textContent  = pad(s);
+  }
+  update();
+  setInterval(update, 1000);
+})();
+
+// ── PARTÍCULAS HERO ──
+(function particles() {
+  const hero = document.querySelector('.hero');
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('span');
+    p.className = 'hero-particle';
+    const size = 2 + Math.random() * 5;
+    p.style.cssText = [
+      `width:${size}px`, `height:${size}px`,
+      `left:${Math.random() * 100}%`,
+      `bottom:${Math.random() * 30}%`,
+      `animation-duration:${8 + Math.random() * 12}s`,
+      `animation-delay:${Math.random() * 8}s`,
+      `opacity:${0.1 + Math.random() * 0.2}`
+    ].join(';');
+    hero.appendChild(p);
+  }
+})();
+
+// ── SCROLL FADE-IN ──
+(function scrollAnim() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in-up').forEach(el => obs.observe(el));
+})();
+</script>
+
+</body>
+</html>
